@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        tools:visibility="gone"
+        android:id="@+id/header_letter_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimarySurface"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
+        android:textColor="?colorOnPrimarySurface"
+        android:textStyle="bold"
+        tools:text="R" />
+
+    <TextView
+        android:id="@+id/contact_name_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        tools:text="Răzvan Roșu" />
+
+</FrameLayout>

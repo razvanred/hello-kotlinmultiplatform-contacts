@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Contacts</string>
+    <string name="add_contact_button_cd">Add contact</string>
+    <string name="edit_contact_dialog_create_title">Create contact</string>
+    <string name="edit_contact_dialog_create_button">Create</string>
+    <string name="contact_name_field_hint">Name</string>
+    <string name="field_required_error_message">The field is required</string>
+    <string name="edit_contact_dialog_edit_title">Edit contact</string>
+    <string name="edit_button">Edit</string>
+    <string name="delete_contact_dialog_title">Delete %s</string>
+    <string name="delete_contact_dialog_message">The contact will be removed from the device.</string>
+    <string name="delete_button">Delete</string>
+</resources>
