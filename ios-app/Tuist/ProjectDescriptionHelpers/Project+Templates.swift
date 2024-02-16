@@ -60,7 +60,17 @@ extension Project {
             infoPlist: .extendingDefault(with: infoPlist),
             sources: ["Targets/\(name)/Sources/**"],
             resources: ["Targets/\(name)/Resources/**"],
-            dependencies: dependencies
+            scripts: [
+                TargetScript.pre(
+                    script: "cd \"$SRCROOT/..\" && ./gradlew :repository:embedAndSignAppleFrameworkForXcode",
+                    name: "Compile Kotlin Framework"
+                )
+            ],
+            dependencies: dependencies,
+            settings: .settings(
+                base: SettingsDictionary()
+                    .frameworkSearchPaths("$(SRCROOT)/../repository/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)")
+            )
         )
 
         let testTarget = Target(
@@ -74,5 +84,12 @@ extension Project {
                 .target(name: "\(name)")
         ])
         return [mainTarget, testTarget]
+    }
+}
+
+fileprivate extension SettingsDictionary {
+    // FRAMEWORK_SEARCH_PATHS
+    func frameworkSearchPaths(_ value: String...) -> SettingsDictionary {
+        merging(["FRAMEWORK_SEARCH_PATHS" : .array(value)])
     }
 }

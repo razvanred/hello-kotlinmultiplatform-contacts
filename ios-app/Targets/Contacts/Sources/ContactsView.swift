@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Repository
+import RepositoryKt
 
 struct ContactsView : View {
     
@@ -39,8 +39,8 @@ struct ContactsView : View {
         NavigationView {
             List {
                 ForEach (viewModel.sections, id: \.initial) { section in
-                    Section(header: InitialHeader(letter: section.initial)) {
-                        ForEach(section.contacts) { contact in
+                    Section(header: InitialHeader(letter: Character(UnicodeScalar(section.initial)!))) {
+                        ForEach(section.contacts, id: \.id) { contact in
                             NavigationLink {
                                 ContactDetailView(viewModel: viewModel, contact: contact)
                             } label: {

@@ -35,8 +35,12 @@ android-tools-desugar = { group = "com.android.tools", name = "desugar_jdk_libs"
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
+# If you want to use the https://github.com/benasher44/uuid library
+uuid = "com.benasher44:uuid:0.8.2"
+
 [plugins]
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

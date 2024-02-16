@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Repository
+import RepositoryKt
 
 struct ContactDetailView : View {
     let viewModel: ContactsViewModel

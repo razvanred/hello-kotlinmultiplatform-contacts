@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Repository
+import RepositoryKt
 
 class ContactsViewModel : ObservableObject {
     
@@ -20,15 +20,15 @@ class ContactsViewModel : ObservableObject {
     }
     
     func refresh() {
-        sections = repository.get()
+        sections = repository.getAll()
     }
     
     func get(id: ContactId) -> Contact {
-        repository.get(id: id)
+        repository.getById(id: id)
     }
     
     func add(new contact: NewContact) {
-        repository.add(new: contact)
+        repository.add(newContact: contact)
     }
     
     func update(contact: Contact) {
@@ -36,6 +36,6 @@ class ContactsViewModel : ObservableObject {
     }
     
     func remove(id: ContactId) {
-        repository.remove(id: id)
+        repository.removeById(id: id)
     }
 }
