@@ -9,7 +9,7 @@
 import SwiftUI
 import Repository
 
-struct ContentView : View {
+struct ContactsView : View {
     
     // The designed behavior for the New Contact dialog is to disable the "Create"
     //  button until the user enters a value that is not blank.
@@ -38,9 +38,9 @@ struct ContentView : View {
     var body : some View {
         NavigationView {
             List {
-                ForEach (viewModel.contacts, id: \.0) { (letter, contacts) in
-                    Section(header: InitialHeader(letter: letter)) {
-                        ForEach(contacts) { contact in
+                ForEach (viewModel.sections, id: \.initial) { section in
+                    Section(header: InitialHeader(letter: section.initial)) {
+                        ForEach(section.contacts) { contact in
                             NavigationLink {
                                 ContactDetailView(viewModel: viewModel, contact: contact)
                             } label: {
@@ -49,7 +49,7 @@ struct ContentView : View {
                         }
                         .onDelete(perform: { offsets in
                             offsets.forEach { i in
-                                viewModel.remove(id: contacts[i].id)
+                                viewModel.remove(id: section.contacts[i].id)
                             }
                             viewModel.refresh()
                         })
@@ -112,7 +112,7 @@ fileprivate struct ContactRow : View {
     }
 }
 
-extension Bundle {
+fileprivate extension Bundle {
     var displayName: String? {
         return object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
     }

@@ -11,7 +11,7 @@ import Repository
 
 class ContactsViewModel : ObservableObject {
     
-    @Published var contacts = [(Character, [Contact])]()
+    @Published var sections = [ContactsSection]()
     
     private let repository: ContactsRepository
     
@@ -20,7 +20,7 @@ class ContactsViewModel : ObservableObject {
     }
     
     func refresh() {
-        contacts = repository.get()
+        sections = repository.get()
     }
     
     func get(id: ContactId) -> Contact {

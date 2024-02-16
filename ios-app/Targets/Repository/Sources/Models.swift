@@ -37,6 +37,11 @@ public struct Contact : Identifiable {
     }
 }
 
+public struct ContactsSection {
+    public let initial: Character
+    public let contacts: [Contact]
+}
+
 public struct NewContact {
     public let name: String
     

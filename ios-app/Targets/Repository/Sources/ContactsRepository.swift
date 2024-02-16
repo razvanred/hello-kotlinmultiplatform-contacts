@@ -7,7 +7,7 @@
 //
 
 public final class ContactsRepository {
-    private var contacts: [ContactId : Contact] = mockContacts
+    private var sections: [ContactId : Contact] = mockContacts
         .map { contact in
             (contact.id, contact)
         }
@@ -19,26 +19,29 @@ public final class ContactsRepository {
     
     public func add(new contact: NewContact) {
         let id = ContactId()
-        contacts[id] = Contact(id: id, name: contact.name)
+        sections[id] = Contact(id: id, name: contact.name)
     }
     
     public func update(contact: Contact) {
-        contacts[contact.id] = contact
+        sections[contact.id] = contact
     }
     
     public func remove(id: ContactId) {
-        contacts.removeValue(forKey: id)
+        sections.removeValue(forKey: id)
     }
     
-    public func get() -> [(Character, [Contact])] {
+    public func get() -> [ContactsSection] {
         Dictionary(
-            grouping: contacts.values.sorted(by: { $0.name < $1.name }),
+            grouping: sections.values.sorted(by: { $0.name < $1.name }),
             by: { $0.name.first! }
         )
-            .sorted(by: { $0.key < $1.key })
+            .map { initial, contacts in
+                ContactsSection(initial: initial, contacts: contacts)
+            }
+            .sorted(by: { $0.initial < $1.initial })
     }
     
     public func get(id: ContactId) -> Contact {
-        contacts[id]!
+        sections[id]!
     }
 }
