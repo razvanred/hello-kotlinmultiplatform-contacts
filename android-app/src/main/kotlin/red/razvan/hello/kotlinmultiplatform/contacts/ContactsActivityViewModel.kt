@@ -7,14 +7,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import red.razvan.hello.kotlinmultiplatform.contacts.repository.Contact
 import red.razvan.hello.kotlinmultiplatform.contacts.repository.ContactsRepository
+import red.razvan.hello.kotlinmultiplatform.contacts.repository.ContactsSection
 import red.razvan.hello.kotlinmultiplatform.contacts.repository.NewContact
 
 class ContactsActivityViewModel(
     private val repository: ContactsRepository,
 ) : ViewModel() {
 
-    private val mutableContacts = MutableStateFlow(emptyMap<Char, List<Contact>>())
-    val contacts = mutableContacts.asStateFlow()
+    private val mutableSections = MutableStateFlow(emptyList<ContactsSection>())
+    val sections = mutableSections.asStateFlow()
 
     init {
         refreshData()
@@ -22,7 +23,7 @@ class ContactsActivityViewModel(
 
     fun refreshData() {
         viewModelScope.launch {
-            mutableContacts.emit(repository.getAll())
+            mutableSections.emit(repository.getAll())
         }
     }
 

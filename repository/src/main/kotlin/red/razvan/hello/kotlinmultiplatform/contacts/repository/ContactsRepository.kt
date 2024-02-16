@@ -20,11 +20,16 @@ class ContactsRepository {
 
     fun getById(id: ContactId): Contact = requireNotNull(contacts[id])
 
-    fun getAll(): Map<Char, List<Contact>> =
+    fun getAll(): List<ContactsSection> =
         contacts
             .values
+            .asSequence()
             .sortedBy(Contact::name)
             .groupBy { contact ->
                 contact.name.first()
             }
+            .map {
+                ContactsSection(initial = it.key, contacts = it.value)
+            }
+            .sortedBy(ContactsSection::initial)
 }

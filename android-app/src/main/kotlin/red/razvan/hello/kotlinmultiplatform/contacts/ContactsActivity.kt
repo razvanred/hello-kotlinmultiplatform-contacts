@@ -73,16 +73,14 @@ class ContactsActivity : AppCompatActivity(), EditContactDialogFragment.Activity
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel
-                    .contacts
-                    .collect { contacts ->
+                    .sections
+                    .collect { sections ->
                         adapter.submitList(
-                            contacts
-                                .entries
-                                .sortedBy { it.key }
-                                .map { entry ->
-                                    listOf(ContactListItem.Header(letter = entry.key))
+                            sections
+                                .map { (letter, contacts) ->
+                                    listOf(ContactListItem.Header(letter = letter))
                                         .plus(
-                                            entry.value.map { contact ->
+                                            contacts.map { contact ->
                                                 ContactListItem.Element(contact)
                                             }
                                         )
