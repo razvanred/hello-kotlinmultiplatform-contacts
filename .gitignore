@@ -26,6 +26,7 @@ captures
 gradle.xml
 *.iml
 .idea/kotlinc.xml
+.idea/deploymentTargetSelector.xml
 
 # General
 .DS_Store
